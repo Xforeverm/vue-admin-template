@@ -36,7 +36,17 @@ module.exports = {
       warnings: false,
       errors: true
     },
-    before: require('./mock/mock-server.js')
+    // 基础api地址
+    proxy: {
+      [process.env.VUE_APP_BASE_API]: {
+        target: process.env.VUE_APP_BASE_API,
+        changeOrigin: true,  //配置跨域
+        pathRewrite: {
+          ['^' + process.env.VUE_APP_BASE_API]: ''
+        }
+      }
+    }
+    // before: require('./mock/mock-server.js')
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
@@ -44,6 +54,7 @@ module.exports = {
     name: name,
     resolve: {
       alias: {
+        // @的地址默认是src
         '@': resolve('src')
       }
     }
