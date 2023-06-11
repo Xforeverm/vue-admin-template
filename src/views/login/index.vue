@@ -3,7 +3,7 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">Qc Admin System</h3>
+        <h3 class="title" style="color: bisque;">Qc Admin System</h3>
       </div>
 
       <el-form-item prop="username">
@@ -54,7 +54,6 @@
 
 <script>
 // import { validUsername } from '@/utils/validate'
-import { loginverify } from '@/api/login'
 
 export default {
   name: 'Login',
@@ -112,18 +111,12 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
-          loginverify(this.loginForm).then(res => {
-            console.log(res)
+          this.$store.dispatch('user/login', this.loginForm).then(() => {
+            this.$router.push({ path: this.redirect || '/' })
             this.loading = false
-          }).catch(error => {
+          }).catch(() => {
             this.loading = false
           })
-          // this.$store.dispatch('user/login', this.loginForm).then(() => {
-          //   this.$router.push({ path: this.redirect || '/' })
-          //   this.loading = false
-          // }).catch(() => {
-          //   this.loading = false
-          // })
         } else {
           console.log('error submit!!')
           return false
