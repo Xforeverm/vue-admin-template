@@ -8,10 +8,11 @@ export function getList(params) {
   })
 }
 
-export function exportList(params){
+export function exportExcel(params){
   return request({
     url: '/data/export',
-    method: 'get',
-    params
+    method: 'post',
+    params,
+    responseType: 'blob'
   })
 }

@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { getList, exportList} from '@/api/table'
+import { getList, exportExcel } from '@/api/table'
 
 export default {
     data() {
@@ -76,9 +76,14 @@ export default {
             this.init()
         },
         handleExportData() {
-            console.log('执行了导出程序');
-            exportList({starttime: this.date[0], endtime: this.date[1] }).then(res => {
-                console.log(res);
+            exportExcel({ starttime: this.date[0], endtime: this.date[1] }).then(res => {
+                let blob = new Blob([res], {type: 'application/vnd.ms-excel;charset=utf-8'})
+                let documentElemet = document.createElement('a')
+                const href = window.URL.createObjectURL(blob)
+                documentElemet.href = href
+                documentElemet.click()
+                document.body.removeChild(downloadElement)
+                window.URL.revokeObjectURL(href)
             })
         }
     }
