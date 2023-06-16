@@ -64,8 +64,6 @@ export default {
 
     methods: {
         init() {
-            console.log(this.date[0]);
-            console.log(this.date[1]);
             getList({ pageNum: this.pageNum, pageSize: this.pageSize, starttime: this.date[0], endtime: this.date[1] }).then(res => {
                 this.tableData = res.data.list
                 this.total = res.data.total
