@@ -41,6 +41,7 @@
 
 <script>
 import { getList, exportExcel } from '@/api/table'
+import moment from 'moment'
 
 export default {
     data() {
@@ -54,11 +55,17 @@ export default {
     },
 
     created() {
+        const now_date = new Date() 
+        const bagin_date = new Date(now_date.getFullYear(), now_date.getMonth(), now_date.getDate(), 0,0,0)
+        this.date[0] = moment(bagin_date).format('YYYY-MM-DD HH:mm:ss');
+        this.date[1] = moment(now_date).format('YYYY-MM-DD HH:mm:ss');
         this.init()
     },
 
     methods: {
         init() {
+            console.log(this.date[0]);
+            console.log(this.date[1]);
             getList({ pageNum: this.pageNum, pageSize: this.pageSize, starttime: this.date[0], endtime: this.date[1] }).then(res => {
                 this.tableData = res.data.list
                 this.total = res.data.total
