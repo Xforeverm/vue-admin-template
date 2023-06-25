@@ -12,21 +12,27 @@
         <el-table :data="tableData" border style="width: 100%; margin-top: 10px;">
             <el-table-column prop="time" label="记录时间" width="180">
             </el-table-column>
-            <el-table-column prop="fee" label="小红书消费数" width="125">
+            <el-table-column prop="fee" label="小红书消费数" width="120">
             </el-table-column>
-            <el-table-column prop="impression" label="小红书展现数" width="125">
+            <el-table-column prop="impression" label="小红书展现数" width="120">
             </el-table-column>
-            <el-table-column prop="ctr" label="小红书点击率" width="125">
+            <el-table-column prop="ctr" label="小红书点击率" width="120">
             </el-table-column>
-            <el-table-column prop="messageUser" label="小红书咨询人数" width="125">
+            <el-table-column prop="messageUser" label="小红书咨询人数" width="120">
             </el-table-column>
-            <el-table-column prop="initiativeMessage" label="小红书开口数" width="125">
+            <el-table-column prop="initiativeMessage" label="小红书开口数" width="120">
             </el-table-column>
-            <el-table-column prop="messageConsultCpl" label="小红书咨询成本" width="125">
+            <el-table-column prop="messageConsultCpl" label="小红书咨询成本" width="120">
             </el-table-column>
-            <el-table-column prop="initiativeMessageCpl" label="小红书开口成本" width="125">
+            <el-table-column prop="initiativeMessageCpl" label="小红书开口成本" width="120">
             </el-table-column>
-            <el-table-column prop="add_customer" label="企飞新增好友" width="125">
+            <el-table-column prop="add_customer" label="企飞新增好友" width="110">
+            </el-table-column>
+            <el-table-column prop="initiativeRatio" label="开口比" width="90">
+            </el-table-column>
+            <el-table-column prop="addRatio" label="添加比" width="90">
+            </el-table-column>
+            <el-table-column prop="addCost" label="添加成本" width="90">
             </el-table-column>
             <el-table-column prop="account" label="账号">
             </el-table-column>
