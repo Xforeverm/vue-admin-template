@@ -67,6 +67,12 @@ export const constantRoutes = [
         name: 'datas',
         component: ()=> import('@/views/data'),
         meta: { title: 'Datas', icon: 'table'} 
+      },
+      {
+        path: 'detail',
+        name: 'detail',
+        component: ()=> import('@/views/detail'),
+        meta: { title: 'Details', icon: 'tree'} 
       }
     ]
   },
