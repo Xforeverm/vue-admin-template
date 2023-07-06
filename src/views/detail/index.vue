@@ -9,32 +9,30 @@
           <el-button type="success" icon="el-icon-share" @click="handleExportData">导出</el-button>
       </el-button-group>
 
-      <el-table :data="tableData" border style="width: 100%; margin-top: 10px;">
-          <el-table-column prop="time" label="记录时间" width="180">
+      <el-table :data="tableData" border style="width: 100%; margin-top: 10px;" :row-class-name="tableRowClassName">
+          <el-table-column prop="time" label="记录时间">
           </el-table-column>
-          <el-table-column prop="fee" label="小红书消费数" width="120">
+          <el-table-column prop="fee" label="小红书分时消费数">
           </el-table-column>
-          <el-table-column prop="impression" label="小红书展现数" width="120">
+          <el-table-column prop="impression" label="小红书分时展现数" width="140">
           </el-table-column>
           <el-table-column prop="ctr" label="小红书点击率" width="120">
           </el-table-column>
-          <el-table-column prop="messageUser" label="小红书咨询人数" width="120">
+          <el-table-column prop="messageUser" label="小红书分时咨询人数" width="150">
           </el-table-column>
-          <el-table-column prop="initiativeMessage" label="小红书开口数" width="120">
+          <el-table-column prop="initiativeMessage" label="小红书分时开口数" width="150">
           </el-table-column>
           <el-table-column prop="messageConsultCpl" label="小红书咨询成本" width="120">
           </el-table-column>
           <el-table-column prop="initiativeMessageCpl" label="小红书开口成本" width="120">
           </el-table-column>
-          <el-table-column prop="add_customer" label="企飞新增好友" width="110">
+          <el-table-column prop="add_customer" label="企飞分时新增好友" width="140">
           </el-table-column>
-          <el-table-column prop="initiativeRatio" label="开口比" width="90">
+          <el-table-column prop="initiativeRatio" label="分时开口比" width="100">
           </el-table-column>
-          <el-table-column prop="addRatio" label="添加比" width="90">
+          <el-table-column prop="addRatio" label="分时添加比" width="100">
           </el-table-column>
-          <el-table-column prop="addCost" label="添加成本" width="90">
-          </el-table-column>
-          <el-table-column prop="account" label="账号">
+          <el-table-column prop="addCost" label="分时添加成本" width="110">
           </el-table-column>
       </el-table>
 
@@ -46,7 +44,7 @@
 </template>
 
 <script>
-import { getList, exportExcel } from '@/api/table'
+import { getDetails } from '@/api/detail'
 import moment from 'moment'
 
 export default {
@@ -69,8 +67,15 @@ export default {
   },
 
   methods: {
+      // table状态表格
+      tableRowClassName({row, rowIndex}) {
+        if (rowIndex === 0) {
+          return 'success-row';
+        }
+        return '';
+      },
       init() {
-          getList({ pageNum: this.pageNum, pageSize: this.pageSize, starttime: this.date[0], endtime: this.date[1] }).then(res => {
+        getDetails({ pageNum: this.pageNum, pageSize: this.pageSize, starttime: this.date[0], endtime: this.date[1] }).then(res => {
               this.tableData = res.data.list
               this.total = res.data.total
           })
@@ -101,4 +106,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+  .el-table .success-row {
+    background: #f0f9eb;
+  }
+</style>
